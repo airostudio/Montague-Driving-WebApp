@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f6f7f9;
+  --color-surface-inset: #eef0f3;
+  --color-border: #e2e5ea;
+  --color-nav: #0f172a;
+  --color-nav-foreground: #e7ebf3;
+  --color-nav-muted: #94a3b8;
+  --color-foreground: #14181f;
+  --color-foreground-muted: #5b6472;
+
+  --color-primary: #2454a8;
+  --color-primary-hover: #1c4489;
+  --color-primary-foreground: #ffffff;
+
+  --color-success: #157a4a;
+  --color-success-bg: #e8f5ee;
+  --color-success-border: #b8e0c8;
+
+  --color-warning: #9a6300;
+  --color-warning-bg: #fdf3dd;
+  --color-warning-border: #f0d99a;
+
+  --color-critical: #b3261e;
+  --color-critical-bg: #fbeaea;
+  --color-critical-border: #eec2be;
+
+  --color-unknown: #46505c;
+  --color-unknown-bg: #eef0f3;
+  --color-unknown-border: #d6dae1;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-inset: var(--color-surface-inset);
+  --color-border: var(--color-border);
+  --color-nav: var(--color-nav);
+  --color-nav-foreground: var(--color-nav-foreground);
+  --color-nav-muted: var(--color-nav-muted);
+  --color-foreground: var(--color-foreground);
+  --color-foreground-muted: var(--color-foreground-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-success: var(--color-success);
+  --color-success-bg: var(--color-success-bg);
+  --color-success-border: var(--color-success-border);
+  --color-warning: var(--color-warning);
+  --color-warning-bg: var(--color-warning-bg);
+  --color-warning-border: var(--color-warning-border);
+  --color-critical: var(--color-critical);
+  --color-critical-bg: var(--color-critical-bg);
+  --color-critical-border: var(--color-critical-border);
+  --color-unknown: var(--color-unknown);
+  --color-unknown-bg: var(--color-unknown-bg);
+  --color-unknown-border: var(--color-unknown-border);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface-muted);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-width: 1px;
 }
