@@ -5,6 +5,7 @@ import { routeCalculationSchema } from "@/lib/validation/route";
 import { getRoutingProvider } from "@/lib/routing/google-routes";
 import { RoutingProviderError } from "@/lib/routing/types";
 import { findRestrictionsNearPath } from "@/lib/restrictions/nearby";
+import type { RoadRestriction } from "@/types/database";
 import { validateRoute } from "@/lib/routing/validate-route";
 import { scoreCandidates, selectBestCandidate } from "@/lib/routing/score-candidates";
 import { checkRateLimit, ROUTE_CALCULATION_LIMIT, ROUTE_CALCULATION_WINDOW_MS } from "@/lib/utils/rate-limit";
@@ -141,7 +142,7 @@ export async function POST(request: NextRequest) {
 
   const evaluated = [];
   for (const candidate of routingResponse.candidates) {
-    let restrictions;
+    let restrictions: RoadRestriction[];
     try {
       restrictions = await findRestrictionsNearPath(supabase, candidate.path);
     } catch (err) {

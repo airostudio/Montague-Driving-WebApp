@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Select, Textarea, FieldError } from "@/components/ui/input";
 import { HAZARDOUS_GOODS_CLASSES } from "@/types/database";
-import { truckSchema, VEHICLE_TYPES } from "@/lib/validation/truck";
+import { truckSchema, VEHICLE_TYPES, type TruckFormValues } from "@/lib/validation/truck";
 import type { Truck } from "@/types/database";
 import { mmToMetres, kgToTonnes } from "@/lib/utils/units";
 
@@ -28,7 +28,7 @@ export function TruckForm({ truck }: { truck?: Truck }) {
 
   const [name, setName] = useState(truck?.name ?? "");
   const [registration, setRegistration] = useState(truck?.registration ?? "");
-  const [vehicleType, setVehicleType] = useState(truck?.vehicle_type ?? "semi_trailer");
+  const [vehicleType, setVehicleType] = useState<TruckFormValues["vehicleType"]>(truck?.vehicle_type ?? "semi_trailer");
   const [heightM, setHeightM] = useState(truck ? String(mmToMetres(truck.height_mm)) : "4.30");
   const [widthM, setWidthM] = useState(truck ? String(mmToMetres(truck.width_mm)) : "2.50");
   const [lengthM, setLengthM] = useState(truck ? String(mmToMetres(truck.length_mm)) : "19.00");
@@ -113,7 +113,7 @@ export function TruckForm({ truck }: { truck?: Truck }) {
           </div>
           <div>
             <Label htmlFor="vehicleType">Vehicle type</Label>
-            <Select id="vehicleType" value={vehicleType} onChange={(e) => setVehicleType(e.target.value)}>
+            <Select id="vehicleType" value={vehicleType} onChange={(e) => setVehicleType(e.target.value as TruckFormValues["vehicleType"])}>
               {VEHICLE_TYPES.map((type) => (
                 <option key={type} value={type}>{VEHICLE_TYPE_LABELS[type]}</option>
               ))}

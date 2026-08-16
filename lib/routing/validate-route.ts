@@ -1,4 +1,4 @@
-import type { RoadRestriction, RouteIssue, RouteValidationStatus, Severity } from "@/types/database";
+import type { RoadRestriction, RouteValidationStatus, Severity } from "@/types/database";
 import type { Coordinate, VehicleRoutingProfile } from "./types";
 
 export interface RouteIssueDraft {
